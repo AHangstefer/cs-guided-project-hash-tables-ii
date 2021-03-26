@@ -40,6 +40,10 @@ Notes:
 
 - `k` is always valid: `1 <= k <= number of unique elements.
 - words in the input list only contain lowercase letters.
+
+UPPER
+
+
 ```
 """
 def top_k_frequent(words, k):
@@ -52,4 +56,23 @@ def top_k_frequent(words, k):
     List[str]
     """
     # Your code here
+
+    freq_dict = {}
+
+    for word in words:
+        if word not in freq_dict:
+            freq_dict[word] = 1
+        else:
+            freq_dict[word] += 1
+    #print(freq_dict)
+    #print(sorted(freq_dict, key = freq_dict.get, reverse = True))
+    sortedWords = sorted(freq_dict, key = lambda dict_key: (-freq_dict[dict_key], dict_key))
+    return sortedWords[:k]
+
+
+
+words = ["lambda", "school", "rules", "lambda", "school", "rocks"]
+k = 2
+
+print(top_k_frequent(words, k))
 
